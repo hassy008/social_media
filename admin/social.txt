@@ -1,0 +1,64 @@
+############## 1st backend
+******** sidebar.blade.php **********
+<li class="sub-menu">
+         <a href="javascript:;" class="">
+                <i class="icon-fire"></i>
+             <span>Social Contact</span>
+            <span class="arrow"></span>
+         </a>
+         <ul class="sub">
+               <li><a class="" href="{{ url('/social') }}">Manage Social Media</a></li>
+         </ul>
+</li>
+
+
+############# web ############
+/*********************[social media]************************/
+Route::get('/social', 'SocialController@social');
+Route::post('/save-social', 'SocialController@saveSocialContact');
+
+
+############# Controller ############
+
+  public function social()
+  {
+  	$all_social_account = DB::table('social')
+  				->first();
+  	$social_add=view('admin.social.social')
+  			->with('all_social_account', $all_social_account);
+  			
+  	return view('admin.admin_master')
+  			->with('mainContent', $social_add);
+  }
+
+  public function saveSocialContact(Request $request)
+  {
+  	$data=array();
+  	$data['facebook']=$request->facebook;
+	$data['youtube']=$request->youtube;
+	$data['instagram']=$request->instagram;
+	$data['pinterest']=$request->pinterest;
+	$data['twitter']=$request->twitter;
+	$data['linkedIn']=$request->linkedIn;
+	$data['google_plus']=$request->google_plus;
+	$data['skype']=$request->skype;
+
+	DB::table('social')
+ 		->update($data);
+
+ 	Session::put('message','Social Account Save Successfully');	
+ 	return redirect('/social');	
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
