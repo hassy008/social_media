@@ -85,9 +85,6 @@ Manage Social Media
       </div>
        
 
- 
-
-
 <div class="control-group">
   <div class="span12">
     <button type="submit" name="btn" class="btn btn-success btn-block">Save Social</button>  
