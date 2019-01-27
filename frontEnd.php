@@ -1,5 +1,5 @@
 <?php 
-        $all_social=DB::table('social')   
+    $all_social=DB::table('social')   
             ->first();
 ?>
 
